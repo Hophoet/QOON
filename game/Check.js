@@ -1,5 +1,7 @@
 import React from 'react'
 import {StyleSheet, View, StatusBar, TextInput, Text, Dimensions, TouchableOpacity} from 'react-native'
+import Ionicons from "react-native-vector-icons/Ionicons"
+
 import colors from './colors/colors'
 //components
 import Number from './components/Number'
@@ -80,14 +82,18 @@ export default class  Check extends React.Component{
                
             }
         }
-    
+
+    _playGame = () => {
+        this.props.navigation.navigate('Main', {})
+    }
+     
    
     
 
 
     render(){
         // console.log('render')
-        console.log(this.randomNumbers, this.playerSelectedNumbers)
+        // console.log(this.randomNumbers, this.playerSelectedNumbers)
         
             return(
                 <View style={styles.container}>
@@ -99,6 +105,12 @@ export default class  Check extends React.Component{
                         </View>
                         <View style={styles.scoreContainer}>
                             <Text style={styles.scoreNumber}>{this._showPlayScore()}</Text>
+                        </View>
+                        <View style={styles.playButtonContainer} >
+                            <TouchableOpacity style={styles.playButton} onPress={this._playGame}>
+                                <Ionicons name='ios-play' size={width/10} color={'#1cadff'} />
+
+                            </TouchableOpacity>
                         </View>
                     </View>
                 
@@ -162,5 +174,28 @@ const styles = StyleSheet.create({
         // backgroundColor:'red',
         // margin:4,
         justifyContent:'flex-end'
+    },
+    playButtonContainer:{
+        // backgroundColor:'red',
+        justifyContent:'center',
+        marginVertical:5
+    },
+    playButton:{
+        backgroundColor:colors.onBackround,
+        alignSelf:'center',
+        // borderColor:'white',
+        // borderWidth:1,
+        borderRadius:60,
+        width:width/4,
+        height:width/4,
+        justifyContent:'center',
+        alignItems:'center',
+        margin:5,
+        elevation:10,
+        flexDirection:'row',
+        
+    },
+    play:{
+        color:'white'
     }
 })
