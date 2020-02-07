@@ -17,7 +17,8 @@ export default class  Main extends React.Component{
             number: {},
             playerSelectedNumbers:[],
             textInputValue:'',
-            isPlayerFinishedSelectingNumbers:false
+            isPlayerFinishedSelectingNumbers:false,
+           
             
         }
     }
