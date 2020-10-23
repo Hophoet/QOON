@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View, StatusBar, TextInput, Text, Dimensions, TouchableOpacity} from 'react-native'
+import {StyleSheet, ScrollView, View, StatusBar, TextInput, Text, Dimensions, TouchableOpacity} from 'react-native'
 import Ionicons from "react-native-vector-icons/Ionicons"
 
 import colors from '../assets/colors/colors'
@@ -96,10 +96,14 @@ export default class  Check extends React.Component{
                 <View style={styles.container}>
                     <StatusBar backgroundColor='#212121'/>
                     <View style={styles.header}>
-                        <View ref='numbersContainer' style={styles.main}>
-                               {this._showNumbers()}
-                            
-                        </View>
+                        <ScrollView 
+                            horizontal={true}
+                        >
+                            <View ref='numbersContainer' style={styles.main}>
+                                {this._showNumbers()}
+                                
+                            </View>
+                        </ScrollView>
                         <View style={styles.scoreContainer}>
                             <Text style={styles.scoreNumber}>{this._showPlayScore()}</Text>
                         </View>
