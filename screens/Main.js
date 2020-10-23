@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View, StatusBar, TextInput, Text, Dimensions, TouchableOpacity} from 'react-native'
+import {StyleSheet, View, ScrollView, StatusBar, TextInput, Text, Dimensions, TouchableOpacity} from 'react-native'
 import {Entypo, Ionicons} from '@expo/vector-icons'
 import colors from '../assets/colors/colors'
 //components
@@ -19,6 +19,7 @@ export default class  Main extends React.Component{
             playerSelectedNumbers:[],
             textInputValue:'',
             isPlayerFinishedSelectingNumbers:false,
+            done:true,
            
             
         }
@@ -140,7 +141,7 @@ export default class  Main extends React.Component{
                 playerSelectedNumbers.push(number)
                 this.setState({playerSelectedNumbers})
                 this.setState({textInputValue:''})
-
+                this.refs.playSelectedNumbersScollView.scrollToEnd()
                 //user finished selecting numbers case
                 if(playerSelectedNumbers.length === this.randomSelectedNumber){
                     //user finished lecting numbers
@@ -166,8 +167,17 @@ export default class  Main extends React.Component{
 
     _showPlayerSelectedNumbers = (numbers) => {
         // console.log('numbers', numbers)
+        if(numbers.length === 0){
+            return (
+                <View style={styles.playSelectedNumberContainer}>
+                <Number value={'_ _'}/>
+            </View>
+            )
+        }
         return numbers.map(number => (
+            <View style={styles.playSelectedNumberContainer}>
                 <Number value={number}/>
+            </View>
                 )
         )
          
@@ -213,6 +223,7 @@ export default class  Main extends React.Component{
 
     render(){
         console.log('render')
+        // console.log(this.refs)
         // console.log("randomSelectedNumber", this.randomSelectedNumber)
         this._trackerRandomNumber(this.randomSelectedNumber)
         if(!this.state.done){
@@ -220,9 +231,11 @@ export default class  Main extends React.Component{
                 <View style={styles.container}>
                     <StatusBar backgroundColor='#212121'/>
                     <View style={styles.header}>
-                        <View ref='numbersContainer' style={styles.main}>
+                   
+                        <View  style={styles.main}>
                             {this._showNumber()}
                         </View>
+                 
                         <View style={styles.timerContainer}>
                             <Text style={styles.timerNumber}>{this._showTimer()}</Text>
                         </View>
@@ -237,10 +250,16 @@ export default class  Main extends React.Component{
         return (
             <View style={styles.container}>
             <StatusBar backgroundColor='#212121'/>
-            <View style={styles.header}>
-                <View ref='numbersContainer' style={styles.main}>
+            <View style={styles.selectionHeader}>
+                <ScrollView 
+                    ref={'playSelectedNumbersScollView'}
+                    horizontal={true}
+                    bounces={true}
+                >
+                <View style={styles.SelectionMain}>
                     {this._showPlayerSelectedNumbers(this.state.playerSelectedNumbers)}
                 </View>
+                </ScrollView>
                 <View style={styles.textInputContainer}>
                     {this._showPlayerSelectingTextInput()}
                 </View>
@@ -275,7 +294,30 @@ const styles = StyleSheet.create({
         marginHorizontal:width/20,
         // borderRadius:5,
         elevation:10,
-        height:width/4,
+        // height:width/4,
+        
+        
+    },
+    selectionHeader:{
+        // backgroundColor:'gray',
+        // flex:1,
+        justifyContent:'center',
+        alignItems:'center'        
+    }
+    ,
+    SelectionMain:{
+        flexDirection:'row',
+        backgroundColor:colors.onBackround,
+        justifyContent:'center',
+        alignItems:'center',
+        padding:20,
+        marginHorizontal:width/20,
+        elevation:10,
+        // height:width/4,
+        // backgroundColor:'red',
+        flex:1,
+        // width:width,
+        // alignSelf:'center',
         
         
     },
@@ -284,7 +326,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     },
     footer:{
-        // backgroundColor:'red',
+        // backgroundColor:'',
         flex:.5
     },
     header:{
@@ -337,5 +379,10 @@ const styles = StyleSheet.create({
         fontSize:20,
         fontWeight:'bold',
 
+    },
+    playSelectedNumberContainer:{
+      
+        justifyContent:'center',
+        alignItems:'center',
     }
 })
