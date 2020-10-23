@@ -3,9 +3,9 @@ import {View, Text, Dimensions, StyleSheet, StatusBar, TouchableOpacity} from 'r
 //
 import AntDesign from 'react-native-vector-icons/AntDesign'
 //components
-import RandomNumberSelection from './components/RandomNumberSelection'
+import RandomNumberSelection from '../components/RandomNumberSelection'
 //colors
-import colors from './colors/colors'
+import colors from '../assets/colors/colors'
 
 
 class Settings extends React.Component {

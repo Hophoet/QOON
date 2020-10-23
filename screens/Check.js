@@ -2,12 +2,15 @@ import React from 'react'
 import {StyleSheet, View, StatusBar, TextInput, Text, Dimensions, TouchableOpacity} from 'react-native'
 import Ionicons from "react-native-vector-icons/Ionicons"
 
-import colors from './colors/colors'
+import colors from '../assets/colors/colors'
 //components
-import Number from './components/Number'
+import Number from '../components/Number'
+
 export default class  Check extends React.Component{
     constructor(props){
         super(props)
+        this.randomSelectedNumber = this.props.navigation.state.params.randomSelectedNumber
+
         this._getNumbers()
         this.state = {
         
@@ -16,14 +19,6 @@ export default class  Check extends React.Component{
     }
 
 
-
-
-
-  
-
-    
-
-    
     componentDidMount(){
         this._getNumbers()
     }
@@ -84,7 +79,7 @@ export default class  Check extends React.Component{
         }
 
     _playGame = () => {
-        this.props.navigation.navigate('Main', {})
+        this.props.navigation.navigate('Main', {'randomSelectedNumber':this.randomSelectedNumber})
     }
      
    
@@ -92,6 +87,8 @@ export default class  Check extends React.Component{
 
 
     render(){
+        console.log('check', this.randomSelectedNumber)
+        
         // console.log('render')
         // console.log(this.randomNumbers, this.playerSelectedNumbers)
         

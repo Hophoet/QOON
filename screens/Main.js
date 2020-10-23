@@ -1,13 +1,14 @@
 import React from 'react'
 import {StyleSheet, View, StatusBar, TextInput, Text, Dimensions, TouchableOpacity} from 'react-native'
 import {Entypo, Ionicons} from '@expo/vector-icons'
-import colors from './colors/colors'
+import colors from '../assets/colors/colors'
 //components
-import Number from './components/Number'
+import Number from '../components/Number'
 import { color } from 'react-native-reanimated'
 export default class  Main extends React.Component{
     constructor(props){
         super(props)
+        this.randomSelectedNumber = this.props.navigation.state.params.randomSelectedNumber
         this.numbers = []
         // this.playSelectedNumbers = []
         this.playerSelectedNumber = ''
@@ -134,14 +135,14 @@ export default class  Main extends React.Component{
             // console.log('VALID')
 
             //check number of selected numbers
-            if(this.state.playerSelectedNumbers.length < 4){
+            if(this.state.playerSelectedNumbers.length < this.randomSelectedNumber){
                 let playerSelectedNumbers = [...this.state.playerSelectedNumbers]
                 playerSelectedNumbers.push(number)
                 this.setState({playerSelectedNumbers})
                 this.setState({textInputValue:''})
 
                 //user finished selecting numbers case
-                if(playerSelectedNumbers.length === 4){
+                if(playerSelectedNumbers.length === this.randomSelectedNumber){
                     //user finished lecting numbers
                     this.setState({isPlayerFinishedSelectingNumbers:true})
                 }
@@ -206,13 +207,14 @@ export default class  Main extends React.Component{
     }
 
     _checkValidation = () =>  {
-        this.props.navigation.navigate('Check',{numbers:{randomNumbers:this.numbers, playerSelectedNumbers:this.state.playerSelectedNumbers}})
+        this.props.navigation.navigate('Check',{'randomSelectedNumber':this.randomSelectedNumber, numbers:{randomNumbers:this.numbers, playerSelectedNumbers:this.state.playerSelectedNumbers}})
     }
 
 
     render(){
         console.log('render')
-        this._trackerRandomNumber(4)
+        // console.log("randomSelectedNumber", this.randomSelectedNumber)
+        this._trackerRandomNumber(this.randomSelectedNumber)
         if(!this.state.done){
             return(
                 <View style={styles.container}>

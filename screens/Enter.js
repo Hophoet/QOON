@@ -1,22 +1,22 @@
 import React from 'react'
 import {StyleSheet, View, Image, Dimensions, Modal, StatusBar, Text, TouchableOpacity} from 'react-native'
 import Ionicons from "react-native-vector-icons/Ionicons"
-import colors from './colors/colors'
+import colors from '../assets/colors/colors'
 //screens
 import Settings from './Settings'
 
-import SettingsButton from './components/SettingsButton'
+import SettingsButton from '../components/settings/SettingsButton'
 export default class  Main extends React.Component{
     constructor(props){
         super(props)
         this.state = {
             settingsModalIsVisible:false,
-            randomSelectedNumber: 3,
+            randomSelectedNumber: 4,
         }
     }
 
     minusRandomSelectedNumber = () => {
-        if(this.state.randomSelectedNumber >= 1){
+        if(this.state.randomSelectedNumber >= 5){
             this.setState({randomSelectedNumber: this.state.randomSelectedNumber -1})
        
         }
@@ -24,13 +24,12 @@ export default class  Main extends React.Component{
 
     plusRandomSelectedNumber = () => {
         this.setState({randomSelectedNumber: this.state.randomSelectedNumber +1})
-        console.log('plusRandomSelectedNumber')
     }
 
   //GOOMA
     _play = () => {
         // alert('PLAY')
-        this.props.navigation.navigate('Main', {})
+        this.props.navigation.navigate('Main', {'randomSelectedNumber':this.state.randomSelectedNumber})
     }
 
     toggleSettingsModal = () => {
@@ -58,13 +57,20 @@ export default class  Main extends React.Component{
                     onRequestClose={this.closeSettingModal}
                     animated={true}
                     visible={this.state.settingsModalIsVisible}
-                    >
-                    <Settings minusRandomSelectedNumber={this.minusRandomSelectedNumber} plusRandomSelectedNumber={this.plusRandomSelectedNumber}   randomSelectedNumber={this.state.randomSelectedNumber}  closeSettingsModal={() => this.closeSettingsModal()}/>
+                >
+                    <Settings 
+                        minusRandomSelectedNumber={this.minusRandomSelectedNumber} 
+                        plusRandomSelectedNumber={this.plusRandomSelectedNumber}   
+                        randomSelectedNumber={this.state.randomSelectedNumber}  
+                        closeSettingsModal={() => this.closeSettingsModal()}
+                    />
                 </Modal>
-                <SettingsButton openSettingsModal={() => this.openSettingsModal()}/>
+                <SettingsButton 
+                    openSettingsModal={() => this.openSettingsModal()}
+                />
                 <View style={styles.main}>
                     <Text style={styles.title}>QOON</Text>
-                    <Text style={styles.description}>Challange Your Brain</Text>
+                    <Text style={styles.description}>Challenge Your Brain</Text>
                     <TouchableOpacity style={styles.playButtonContainer} onPress={this._play}>
                         <Ionicons name='ios-play' size={width/10} color={'#1cadff'} />
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, View, StatusBar, Text, Dimensions, TouchableOpacity} from 'react-native'
 import AntDesign from 'react-native-vector-icons/Ionicons'
-import colors from '../colors/colors'
+import colors from '../assets/colors/colors'
 
 export default class  RandomNumberSelection extends React.Component{
     

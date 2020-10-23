@@ -26,7 +26,7 @@ import {
 
 
 //components
-import Nav from './game/navigations/Navigators'
+import Nav from './navigations/Navigators'
 
 export default class App extends React.Component{
     render(){

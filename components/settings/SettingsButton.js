@@ -3,7 +3,7 @@ import {StyleSheet, View, StatusBar, Text, Dimensions, TouchableOpacity} from 'r
 import Ionicons from "react-native-vector-icons/Ionicons"
 
 
-import colors from '../colors/colors'
+import colors from '../../assets/colors/colors'
 
 export default class  Settings extends React.Component{
   

@@ -1,9 +1,9 @@
 // import {createStackNavigator} from 'react-navigation-stack'
 import {createAppContainer, createSwitchNavigator } from 'react-navigation';
 
-import Enter from '../Enter'
-import Main from '../Main'
-import Check from '../Check'
+import Enter from '../screens/Enter'
+import Main from '../screens/Main'
+import Check from '../screens/Check'
 
 
 

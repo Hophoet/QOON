@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, View, StatusBar, Text, Dimensions, TouchableOpacity} from 'react-native'
-import {Entypo, Ionicons} from '@expo/vector-icons'
-import colors from '../colors/colors'
+// import {Entypo, Ionicons} from '@expo/vector-icons'
+import colors from '../assets/colors/colors'
 
 export default class  Number extends React.Component{
   
