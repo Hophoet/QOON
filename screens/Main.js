@@ -8,67 +8,85 @@ import { color } from 'react-native-reanimated'
 export default class  Main extends React.Component{
     constructor(props){
         super(props)
+        //get the random numbers selection number from the navigation parameters
         this.randomSelectedNumber = this.props.navigation.state.params.randomSelectedNumber
+        //set the random numbers empty array
         this.numbers = []
-        // this.playSelectedNumbers = []
-        this.playerSelectedNumber = ''
+        //set the state of the timer (show or not)
         this.timerIsShow = true
+        //set the random number state (show or not)
         this.randomNumberIsShow = true
+        //the screen state
         this.state = {
+            //player selected number(in on time)
             number: {},
+            //all the player selected numbers
             playerSelectedNumbers:[],
+            //the player selecting textinput value
             textInputValue:'',
+            //Player selection state (end or not)
             isPlayerFinishedSelectingNumbers:false,
-            done:true,
            
             
         }
     }
 
+    //method to get the timer current value
     _showTimer = () => {
-        return  this.timerIsShow && this.state.timer
+        //condition on the timer state before the getting
+        if(this.timerIsShow){
+            return  this.state.timer
+        }
     }
 
+    //method to set or initialize the timer value
     _fillTimer = (value) => {
-        //enable the timer show
-        if(!this.timerIsShow){
-            this.timerIsShow = true
-        }
-        if(!this.randomNUmberIsShow){
+       console.log('TIMER IS SHOW', this.timerIsShow)
+       //set the random number showing state to true(enable)
+        if(!this.randomNumberIsShow){
             this.randomNumberIsShow = true
         }
+        //checking the existence of the timer 
         if(this.state.timer == null){ 
+            // console.log('SETTING THE TIMER...')
+            //intializing the timer value
             this.setState({timer:value})
+            //generation a random number
             let randomNumber = parseInt(Math.random()*100)
+            //buting the generated random number into the random numbers array
             this.numbers.push(randomNumber)
+            //set the number state to the current getting random number
             this.setState({number:{value:randomNumber}})
         }
+        //setting the timer itervale as attribute (interval)
         this.interval = setInterval( () => {
+            console.log('RUNNING TIMER.....', this.state.timer)
+            //checking if the timer is > to 1 before 
+            //decreasing is value to avoid 0 showing as value case
             if(this.state.timer >1)
             this.setState({timer:this.state.timer - 1})
-   
+            //timer value egale to 0 case (=> inititalize the timer by the initial value)
             else{
+                //getting the generated random number
                 let randomNumber = parseInt(Math.random()*100)
+                //put the random number to the randoms numbers array
                 this.numbers.push(randomNumber)
-                if(this.numbers.length != 2){
-                    this.setState({timer:value})
-            
-                    this.setState({number:{value:randomNumber}})
-                }
-                else{
-                    console.log("OK")
-                    this.setState({timer:value})
-         
-                    this.setState({number:{value:randomNumber}})
-                }
+                //re initialize the timer by the initial value
+                this.setState({timer:value})
+                //set the random number to the state 
+                this.setState({number:{value:randomNumber}})
+                
 
             }
-        }, 1000)
+        },//set the timer callback function to 1 second(100 milliseconds) 
+        1000)
 
 
     }
 
+    //method for the number component rendering...
     _showNumber = () => {
+        //check the existencd of the rendering value and his state
         if(this.state.number.value && this.randomNumberIsShow){
             return (
                 <Number value={this.state.number.value}/>
@@ -76,22 +94,27 @@ export default class  Main extends React.Component{
         }
     }
 
+    //random numbers array size tracker method
     _trackerRandomNumber = (size) => {
-        // console.log(this.numbers)
+        // condition for the end of the random number generation
         if(this.numbers.length === size && this.state.timer === 1){
-  
-       
-            // this.timerIsShow = false
-            // this.setState({timer:1})
+
+            //condition on the before the end of the last second for the end
             if(!this.state.done){
                 console.log("DONE SETTED")
+                //cleaning the timer intervale
                 clearInterval(this.interval)
+                //set the last second timer for the last random generated number
                 setTimeout( () => {
+                    //set the timer showing state to false(deseable)
                     this.timerIsShow = false
+                    //deseable the random number showing state
                     this.randomNumberIsShow = false
+                    //set the done state for the last class of the timer (onsecond)
                     this.setState({done:true})
                     console.log('DISEABLE TIMER')
-                }, 1000)
+                },//set the last second of the last random number to 1 second 
+                1000)
                 
             }
            
@@ -99,48 +122,70 @@ export default class  Main extends React.Component{
     }
 
 
-    _fillNumber = () => {
-        let setinterval = setInterval( () => {
-            let randomNumber = parseInt(Math.random()*100)
-            this.numbers.push(randomNumber)
-            this.setState({number:{value:randomNumber}})
-            // console.log('call')
-        }, 7000)
-        // setinterval.
-    }
-
     
 
-    
+    //call after components did mount
     componentDidMount(){
+        //set the timer after components did mount
         this._fillTimer(2)
     }
 
+    //method to check the validation of the player selected number
+    //to avoid bugs
     _isPlayerSelectedNumberValids = (number) => {
         let playerSelectedNumber = number.trim()
-        // console.log(playerSelectedNumber, playerSelectedNumber.length)
+        // check the size of the player input number
         if(playerSelectedNumber.length > 0 && playerSelectedNumber.length <3){
-
+            if(playerSelectedNumber.length == 2){
+                let isCorrectFormat =playerSelectedNumber[0] != '.' && playerSelectedNumber[0] != ',' && playerSelectedNumber[1] != '.' && playerSelectedNumber[1] != ',' && playerSelectedNumber[1] != '-'
+                console.log('isCorrectFormat', isCorrectFormat)
+                if(isCorrectFormat)
+                    return true 
+                return false
+            }
+            else {
+                let isCorrectFormat =playerSelectedNumber[0] != '.' && playerSelectedNumber[0] != ',' && playerSelectedNumber[0] != '-'
+                console.log('isCorrectFormat', isCorrectFormat)
+                if(isCorrectFormat)
+                    return true 
+                return false
+            }
+         
+            //cast the player input to an integer
             playerSelectedNumber = parseInt(playerSelectedNumber)
+            console.log('VALUE', playerSelectedNumber)
+            //check the get value from the casting 
             if(playerSelectedNumber){
                 return true
             }
+            else if (playerSelectedNumber === 0){
+                return true
+            }
+          
+            
         }
         return false
     }
 
-    
+    //method to add the player input value
     _addPlayerSelectedNumber = () => {
+        //get of the input value (number)
         let number = this.state.textInputValue
+        //check the validation of the player input value
         if(this._isPlayerSelectedNumberValids(number)){
-            // console.log('VALID')
-
+            //Valid case
+            
+            number = number.trim()
             //check number of selected numbers
             if(this.state.playerSelectedNumbers.length < this.randomSelectedNumber){
+                //cloning og the player selected numbers array
                 let playerSelectedNumbers = [...this.state.playerSelectedNumbers]
+                //push the selected number into the number
                 playerSelectedNumbers.push(number)
                 this.setState({playerSelectedNumbers})
+                //reset the text input value to an empty string
                 this.setState({textInputValue:''})
+                //scroll the the end of the selected numbers list
                 this.refs.playSelectedNumbersScollView.scrollToEnd()
                 //user finished selecting numbers case
                 if(playerSelectedNumbers.length === this.randomSelectedNumber){
@@ -149,24 +194,22 @@ export default class  Main extends React.Component{
                 }
             }
             else{
-                
+                // NOTHING YET TODO
                 
             }
-            // console.log(this.refs.textInput)
-            // this.refs.textInput.focus()
-            // this.refs.textInput.autoFocus = true
-            // console.log(playerSelectedNumbers)
         }
         else{
-            // console.log('NOT VALID')
+            // NOTHING YET TODO
         }
   
     }
     
     
-
+    //method to render the user selected number components
     _showPlayerSelectedNumbers = (numbers) => {
-        // console.log('numbers', numbers)
+        // check the arrays state
+        //if empty , then we render a default square component with (_ _)
+        //meaning waiting for his selected number
         if(numbers.length === 0){
             return (
                 <View style={styles.playSelectedNumberContainer}>
@@ -174,6 +217,7 @@ export default class  Main extends React.Component{
             </View>
             )
         }
+        //return the numbers if they exist
         return numbers.map(number => (
             <View style={styles.playSelectedNumberContainer}>
                 <Number value={number}/>
@@ -183,6 +227,7 @@ export default class  Main extends React.Component{
          
     }
 
+    //method for the checking button showing management
     _showCheckingButton =  () => {
         if(this.state.isPlayerFinishedSelectingNumbers){
             return (
@@ -193,6 +238,8 @@ export default class  Main extends React.Component{
         }
     }
 
+    //method for the player textinput after the random numbers
+    //to allowed the player to choose his numbers
     _showPlayerSelectingTextInput = () => {
         if(!this.state.isPlayerFinishedSelectingNumbers){
             return (
@@ -216,16 +263,18 @@ export default class  Main extends React.Component{
         }
     }
 
+    //method to start the numbers checking
     _checkValidation = () =>  {
+        //navigation to the checking screen with the numbers (randoms numbers, and the player selected numbers)
         this.props.navigation.navigate('Check',{'randomSelectedNumber':this.randomSelectedNumber, numbers:{randomNumbers:this.numbers, playerSelectedNumbers:this.state.playerSelectedNumbers}})
     }
 
 
     render(){
-        console.log('render')
-        // console.log(this.refs)
-        // console.log("randomSelectedNumber", this.randomSelectedNumber)
+        // console.log('MAIN RENDER')
+        //Call of the random numbers array size tracking method
         this._trackerRandomNumber(this.randomSelectedNumber)
+        //render of the random numbers generetion step components
         if(!this.state.done){
             return(
                 <View style={styles.container}>
@@ -247,6 +296,7 @@ export default class  Main extends React.Component{
                 </View>
             )
         }
+        //render the player numbers selection step
         return (
             <View style={styles.container}>
             <StatusBar backgroundColor='#212121'/>
@@ -276,9 +326,11 @@ export default class  Main extends React.Component{
     }
 }
 
+//get the dynamic with and height for the mobile phone window
 const {width, height} = Dimensions.get('window')
 
 
+//setting the style with StyleSheet API
 const styles = StyleSheet.create({
     container:{
         flex:1,
@@ -294,9 +346,7 @@ const styles = StyleSheet.create({
         marginHorizontal:width/20,
         // borderRadius:5,
         elevation:10,
-        // height:width/4,
-        
-        
+
     },
     selectionHeader:{
         // backgroundColor:'gray',
