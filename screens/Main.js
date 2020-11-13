@@ -5,6 +5,7 @@ import colors from '../assets/colors/colors'
 //components
 import Number from '../components/Number'
 import { color } from 'react-native-reanimated'
+import CheckLoader from '../components/animations/CheckLoader'
 export default class  Main extends React.Component{
     constructor(props){
         super(props)
@@ -13,7 +14,7 @@ export default class  Main extends React.Component{
         //set the random numbers empty array
         this.numbers = []
         //set the state of the timer (show or not)
-        this.timerIsShow = true
+        this.timerIsShow = false
         //set the random number state (show or not)
         this.randomNumberIsShow = true
         //the screen state
@@ -26,6 +27,8 @@ export default class  Main extends React.Component{
             textInputValue:'',
             //Player selection state (end or not)
             isPlayerFinishedSelectingNumbers:false,
+            //checkingLoader
+            checkingLoading: false
            
             
         }
@@ -218,11 +221,13 @@ export default class  Main extends React.Component{
             )
         }
         //return the numbers if they exist
-        return numbers.map(number => (
-            <View style={styles.playSelectedNumberContainer}>
+        return numbers.map(number => {
+            let num = Math.random()
+            return (
+            <View key={number+num} style={styles.playSelectedNumberContainer}>
                 <Number value={number}/>
             </View>
-                )
+                )}
         )
          
     }
@@ -230,10 +235,20 @@ export default class  Main extends React.Component{
     //method for the checking button showing management
     _showCheckingButton =  () => {
         if(this.state.isPlayerFinishedSelectingNumbers){
+            if(this.state.checkingLoading){
+                return (
+                    <View>
+                        <CheckLoader color={'white'}/>
+                    </View>
+                )
+            }
             return (
-                <TouchableOpacity style={styles.checkButton} onPress={this._checkValidation}>
+                <View>
+                    <TouchableOpacity style={styles.checkButton} onPress={this._checkValidation}>
                         <Text style={styles.checkButtonText}>Check</Text>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                </View>
+           
             )
         }
     }
@@ -265,8 +280,13 @@ export default class  Main extends React.Component{
 
     //method to start the numbers checking
     _checkValidation = () =>  {
+        this.setState({checkingLoading: true})
         //navigation to the checking screen with the numbers (randoms numbers, and the player selected numbers)
-        this.props.navigation.navigate('Check',{'randomSelectedNumber':this.randomSelectedNumber, numbers:{randomNumbers:this.numbers, playerSelectedNumbers:this.state.playerSelectedNumbers}})
+        setTimeout(() => {
+            this.props.navigation.navigate('Check',{'randomSelectedNumber':this.randomSelectedNumber, numbers:{randomNumbers:this.numbers, playerSelectedNumbers:this.state.playerSelectedNumbers}})
+            this.setState({checkingLoading:false})
+
+        }, 5000)
     }
 
 
