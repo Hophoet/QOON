@@ -1,11 +1,13 @@
 import React from 'react'
 import {StyleSheet, View, ScrollView, StatusBar, TextInput, Text, Dimensions, TouchableOpacity} from 'react-native'
-import {Entypo, Ionicons} from '@expo/vector-icons'
+import Ionicons from "react-native-vector-icons/Ionicons"
+
 import colors from '../assets/colors/colors'
 //components
 import Number from '../components/Number'
 import { color } from 'react-native-reanimated'
 import CheckLoader from '../components/animations/CheckLoader'
+
 export default class  Main extends React.Component{
     constructor(props){
         super(props)
@@ -245,6 +247,7 @@ export default class  Main extends React.Component{
             return (
                 <View>
                     <TouchableOpacity style={styles.checkButton} onPress={this._checkValidation}>
+                        <Ionicons name='ios-settings' size={width/10} color={'#1cadff'}/>
                         <Text style={styles.checkButtonText}>Check</Text>
                     </TouchableOpacity>
                 </View>
@@ -345,6 +348,16 @@ export default class  Main extends React.Component{
         </View>       
         )
     }
+    // render(){
+    //     return (
+    //     <View>
+    //         <TouchableOpacity style={styles.checkButton} onPress={this._checkValidation}>
+    //             <Ionicons name='ios-settings' size={width/10} color={'#1cadff'}/>
+    //             <Text style={styles.checkButtonText}>Check</Text>
+    //         </TouchableOpacity>
+    //     </View>
+    //     )
+    // }
 }
 
 //get the dynamic with and height for the mobile phone window
@@ -439,9 +452,13 @@ const styles = StyleSheet.create({
         marginVertical:10,
     },
     checkButton:{
-        backgroundColor:'#1cadff',
+        backgroundColor:colors.onBackround,
         paddingVertical:10,
         paddingHorizontal:20,
+        elevation:5,
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
 
 
     },
