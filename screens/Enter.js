@@ -1,6 +1,7 @@
 import React from 'react'
 import {StyleSheet, View, Image, Dimensions, Modal, StatusBar, Text, TouchableOpacity} from 'react-native'
 import Ionicons from "react-native-vector-icons/Ionicons"
+import F from "react-native-vector-icons/Fontisto"
 import colors from '../assets/colors/colors'
 //screens
 import Settings from './Settings'
@@ -70,7 +71,9 @@ export default class  Main extends React.Component{
                 />
                 <View style={styles.main}>
                     <Text style={styles.title}>QOON</Text>
-                    <Text style={styles.description}>Challenge Your Brain</Text>
+                    <Text style={styles.description}>Train your
+                        <Text style={styles.brainText}> Brain </Text>
+                     by playing</Text>
                     <TouchableOpacity style={styles.playButtonContainer} onPress={this._play}>
                         <Ionicons name='ios-play' size={width/10} color={'#1cadff'} />
 
@@ -128,10 +131,16 @@ const styles = StyleSheet.create({
         fontSize:30
     },
     description:{
-        color:'white'
+        color:'white',
+        // textTransform:'lowercase'
     },
     brainImage:{
         width:Dimensions.get('window').width/2,
         height:Dimensions.get('window').width/2,
+    },
+    brainText:{
+        fontWeight:'bold',
+        color:'#1cadff',
+        fontSize:17
     }
 })
