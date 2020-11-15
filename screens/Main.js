@@ -286,12 +286,13 @@ export default class  Main extends React.Component{
             this.props.navigation.navigate('Check',{'randomSelectedNumber':this.randomSelectedNumber, numbers:{randomNumbers:this.numbers, playerSelectedNumbers:this.state.playerSelectedNumbers}})
             this.setState({checkingLoading:false})
 
-        }, 5000)
+        }, this.props.navigation.state.params.randomSelectedNumber*1000)
     }
 
 
     render(){
         // console.log('MAIN RENDER')
+        console.log('PARAMS', this.props.navigation.state.params.randomSelectedNumber)
         //Call of the random numbers array size tracking method
         this._trackerRandomNumber(this.randomSelectedNumber)
         //render of the random numbers generetion step components

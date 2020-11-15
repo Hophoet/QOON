@@ -17,15 +17,17 @@ export default class CheckLoader extends React.Component {
                 toValue:100,
                 duration:2000,
                 easing: Easing.linear,
+                useNativeDriver: true,
 
             }),
             Animated.timing(this.state.rotateValue, {
                 toValue:0,
                 duration:0,
+                useNativeDriver: true,
 
             })
 
-        ]).start( () => {
+        ], { useNativeDriver:true}).start( () => {
             this._animated()
         })
         
