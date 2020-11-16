@@ -4,10 +4,13 @@ import {createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Enter from '../screens/Enter'
 import Main from '../screens/Main'
 import Check from '../screens/Check'
-
+import Splash from '../screens/Splash'
 
 
 const Nav = createSwitchNavigator({
+    Splash:{
+      screen:Splash
+    },
     Enter:{
       screen: Enter,
     },
@@ -17,7 +20,7 @@ const Nav = createSwitchNavigator({
     Check:{
       screen:Check
     }
-  }, {initialRouteName:'Enter'})
+  }, {initialRouteName:'Splash'})
 
 
    
