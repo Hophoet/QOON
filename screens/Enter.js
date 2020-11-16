@@ -70,10 +70,12 @@ export default class  Main extends React.Component{
                     openSettingsModal={() => this.openSettingsModal()}
                 />
                 <View style={styles.main}>
-                    <Text style={styles.title}>QOON</Text>
-                    <Text style={styles.description}>Train your
+                    <Text style={styles.title}><Text style={{color:'white'}}>QO</Text>ON</Text>
+                    <Text style={styles.description}>train your
                         <Text style={styles.brainText}> Brain </Text>
                      by playing</Text>
+                        <Text style={styles.readyText}>Ready to memorize numbers ?</Text>
+                        <Text style={styles.playText}>Click to start</Text>
                     <TouchableOpacity style={styles.playButtonContainer} onPress={this._play}>
                         <Ionicons name='ios-play' size={width/10} color={'#1cadff'} />
 
@@ -141,6 +143,13 @@ const styles = StyleSheet.create({
     brainText:{
         fontWeight:'bold',
         color:'#1cadff',
-        fontSize:17
+        fontSize:17,
+    },
+    readyText:{
+        color:'white',
+        marginTop:20
+    },
+    playText:{
+        color:'white'
     }
 })
