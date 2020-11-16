@@ -134,6 +134,9 @@ export default class  Main extends React.Component{
         //set the timer after components did mount
         this._fillTimer(2)
     }
+    componentWillUnmount(){
+        
+    }
 
     //method to check the validation of the player selected number
     //to avoid bugs
@@ -292,6 +295,26 @@ export default class  Main extends React.Component{
         }, this.props.navigation.state.params.randomSelectedNumber*1000)
     }
 
+    _showIndicator = () => {
+        if(!this.state.isPlayerFinishedSelectingNumbers){
+
+            return (
+                <View style={styles.indicatorContainer}>
+                        <Text style={styles.indicatorText}>Remember the numbers in the order </Text>
+                </View>
+            )
+        }
+    }
+
+    _showInputState = () => {
+        return(
+            <View style={styles.inputStateContainer}>
+                <Text style={styles.inputState}>{this.state.playerSelectedNumbers.length}/{this.randomSelectedNumber}</Text>
+            </View>
+        )
+    }
+
+
 
     render(){
         // console.log('MAIN RENDER')
@@ -325,6 +348,7 @@ export default class  Main extends React.Component{
             <View style={styles.container}>
             <StatusBar backgroundColor='#212121'/>
             <View style={styles.selectionHeader}>
+                { this._showIndicator()}
                 <ScrollView 
                     ref={'playSelectedNumbersScollView'}
                     horizontal={true}
@@ -334,7 +358,9 @@ export default class  Main extends React.Component{
                     {this._showPlayerSelectedNumbers(this.state.playerSelectedNumbers)}
                 </View>
                 </ScrollView>
+                { this._showInputState()}
                 <View style={styles.textInputContainer}>
+                
                     {this._showPlayerSelectingTextInput()}
                 </View>
                 <View style={styles.checkButtonContainer}>
@@ -472,5 +498,27 @@ const styles = StyleSheet.create({
       
         justifyContent:'center',
         alignItems:'center',
-    }
+    },
+    indicatorContainer:{
+        padding:10,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    indicatorText:{
+        color:'white',
+        fontSize:20,
+
+    },
+    inputStateContainer:{
+        // backgroundColor:'gray',
+        justifyContent:'center',
+        alignItems:'center',
+        alignSelf:'center',
+        margin:10
+    },
+    inputState:{
+        color:'white',
+        fontSize:40,
+        opacity:.3
+    },
 })
