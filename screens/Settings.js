@@ -1,6 +1,5 @@
 import React from 'react'
 import {View, Text, Dimensions, StyleSheet, StatusBar, TouchableOpacity} from 'react-native'
-//
 import AntDesign from 'react-native-vector-icons/AntDesign'
 //components
 import RandomNumberSelection from '../components/RandomNumberSelection'
@@ -46,16 +45,13 @@ const styles = StyleSheet.create({
         backgroundColor:colors.background,
     },
     closeModalButtonContainer:{
-        // backgroundColor:'red',
         justifyContent:'center',
         alignItems:'flex-end'
     },
     closeModalButton:{
-        // backgroundColor:'black',
         padding:width/20
     }, 
     body:{
         flex:1,
-        // backgroundColor:'green'
     }
 })

@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     main:{
-        // flex:1,
         backgroundColor:colors.onBackround,
         justifyContent:'center',
         alignItems:'center',
@@ -108,7 +107,6 @@ const styles = StyleSheet.create({
     playButtonContainer:{
         backgroundColor:colors.onBackround,
         borderColor:'white',
-        // borderWidth:1,
         borderRadius:60,
         width:width/4,
         height:width/4,
@@ -122,7 +120,6 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'white',
         fontSize:17
-        // fontFamily:'sans-serif'
     },
     play:{
         color:'white',
@@ -134,7 +131,6 @@ const styles = StyleSheet.create({
     },
     description:{
         color:'white',
-        // textTransform:'lowercase'
     },
     brainImage:{
         width:Dimensions.get('window').width/2,

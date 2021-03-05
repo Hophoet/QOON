@@ -140,27 +140,20 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         padding:20,
         marginHorizontal:width/20,
-        // borderRadius:5,
         elevation:10,
-        // height:width/4,
-        
-        
     },
     title:{
         color:'#1cadff',
         fontWeight:'bold'
     },
     footer:{
-        // backgroundColor:'red',
         flex:.5
     },
     header:{
-        // backgroundColor:'gray',
         flex:1,
         justifyContent:'center'
     },
     scoreContainer:{
-        // backgroundColor:'gray',
         justifyContent:'center',
         alignItems:'center',
         alignSelf:'center',
@@ -172,20 +165,15 @@ const styles = StyleSheet.create({
         opacity:.3
     },
     numbersContainer:{
-        // backgroundColor:'red',
-        // margin:4,
         justifyContent:'flex-end'
     },
     playButtonContainer:{
-        // backgroundColor:'red',
         justifyContent:'center',
         marginVertical:5
     },
     playButton:{
         backgroundColor:colors.onBackround,
         alignSelf:'center',
-        // borderColor:'white',
-        // borderWidth:1,
         borderRadius:60,
         width:width/4,
         height:width/4,

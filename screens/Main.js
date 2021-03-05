@@ -374,16 +374,6 @@ export default class  Main extends React.Component{
         </View>       
         )
     }
-    // render(){
-    //     return (
-    //     <View>
-    //         <TouchableOpacity style={styles.checkButton} onPress={this._checkValidation}>
-    //             <Ionicons name='ios-settings' size={width/10} color={'#1cadff'}/>
-    //             <Text style={styles.checkButtonText}>Check</Text>
-    //         </TouchableOpacity>
-    //     </View>
-    //     )
-    // }
 }
 
 //get the dynamic with and height for the mobile phone window
@@ -404,13 +394,9 @@ const styles = StyleSheet.create({
         alignItems:'center',
         padding:20,
         marginHorizontal:width/20,
-        // borderRadius:5,
         elevation:10,
-
     },
     selectionHeader:{
-        // backgroundColor:'gray',
-        // flex:1,
         justifyContent:'center',
         alignItems:'center'        
     }
@@ -423,29 +409,20 @@ const styles = StyleSheet.create({
         padding:20,
         marginHorizontal:width/20,
         elevation:10,
-        // height:width/4,
-        // backgroundColor:'red',
         flex:1,
-        // width:width,
-        // alignSelf:'center',
-        
-        
     },
     title:{
         color:'#1cadff',
         fontWeight:'bold'
     },
     footer:{
-        // backgroundColor:'',
         flex:.5
     },
     header:{
-        // backgroundColor:'gray',
         flex:1,
         justifyContent:'center'
     },
     timerContainer:{
-        // backgroundColor:'gray',
         justifyContent:'center',
         alignItems:'center',
         alignSelf:'center',
@@ -457,7 +434,6 @@ const styles = StyleSheet.create({
         opacity:.3
     },
     textInputContainer:{
-        // backgroundColor:'red',
         alignSelf:'center',
         margin:10
         
@@ -472,7 +448,6 @@ const styles = StyleSheet.create({
         fontSize:30
     },
     checkButtonContainer:{
-        // backgroundColor:'red',
         justifyContent:'center',
         alignItems:'center',
         marginVertical:10,
@@ -510,7 +485,6 @@ const styles = StyleSheet.create({
 
     },
     inputStateContainer:{
-        // backgroundColor:'gray',
         justifyContent:'center',
         alignItems:'center',
         alignSelf:'center',
