@@ -1,22 +1,17 @@
 import React from 'react'
-import {StyleSheet, View, StatusBar, Text, Dimensions, TouchableOpacity} from 'react-native'
-// import {Entypo, Ionicons} from '@expo/vector-icons'
-import colors from '../assets/colors/colors'
+import {StyleSheet, View, Text, Dimensions} from 'react-native';
 
-export default class  Number extends React.Component{
-  
-    render(){
-        return(
-            <View style={[styles.container, {...this.props.style}]}>
-                <Text style={styles.value}>{this.props.value}</Text>
-            </View>
-        )
-    }
+const Number = () => {
+	return(
+		<View style={[styles.container, {...this.props.style}]}>
+			<Text style={styles.value}>{this.props.value}</Text>
+		</View>
+	)
+
 }
+export default Number;
 
-const {width, height} = Dimensions.get('window')
-
-
+const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container:{
         padding:0,
@@ -34,5 +29,5 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:40
     }
-})
+});
 
