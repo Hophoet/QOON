@@ -7,8 +7,7 @@
 ![qoon 5](https://github.com/user-attachments/assets/6440d789-7e6b-4a0f-a95a-e6cc318e4583)
 ![qoon 6](https://github.com/user-attachments/assets/a4bd0bc8-f909-4764-9715-42813a37a46d)
 ![qoon 7](https://github.com/user-attachments/assets/3758be3b-cebb-4731-bdaf-1c3a8fd21e6e)
-![qoon logo](https://github.com/user-attachments/assets/ba71dcf7-6ba4-4b25-aee4-a4511eec5f8c)
-
+<script src="https://gist.github.com/trusktr/93175b620d47827ffdedbf52433e3b37.js"></script>
 
 
 ## Setup instructions
