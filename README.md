@@ -8,7 +8,7 @@
 
 ```sh
 
-cd ./bluemessenger
+cd ./qoon
 ```
 
 ### 2. Install dependencies
