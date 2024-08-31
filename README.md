@@ -1,5 +1,7 @@
 # QOON GAME
 
+![Uploading unnamed.png…]()
+![Uploading unnamed (1).png…]()
 
 
 ## Setup instructions
