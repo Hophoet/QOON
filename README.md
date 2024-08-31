@@ -7,8 +7,14 @@
 ![qoon 5](https://github.com/user-attachments/assets/6440d789-7e6b-4a0f-a95a-e6cc318e4583)
 ![qoon 6](https://github.com/user-attachments/assets/a4bd0bc8-f909-4764-9715-42813a37a46d)
 ![qoon 7](https://github.com/user-attachments/assets/3758be3b-cebb-4731-bdaf-1c3a8fd21e6e)
-<script src="https://gist.github.com/trusktr/93175b620d47827ffdedbf52433e3b37.js"></script>
 
+
+
+| | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="QOON GAME" src="https://github.com/user-attachments/assets/3758be3b-cebb-4731-bdaf-1c3a8fd21e6e">  blah |  <img width="1604" alt="" src="">|<img width="1604" alt="" src="">|
+|<img width="1604" alt="" src="">  |  <img width="1604" alt="" src="">|<img width="1604" alt="" src="">|
+|<img width="1604" alt="" src="">  |  <img width="1604" alt=" src="">|<img width="1604" alt="" src="">|
 
 ## Setup instructions
 
